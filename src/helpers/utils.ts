@@ -28,8 +28,8 @@ export async function httpRequest(config: HttpRequestConfig) {
                 'User-Agent': `${appName}/${appVersion}`
             }
         };
-        const { data } = await axios.request(options);
-        return data;
+        const { data, headers, status } = await axios.request(options);
+        return { data, headers, status };
     } catch (error) {
         if (axios.isAxiosError(error) && error.response) {
             throw error.response.data.msg;
